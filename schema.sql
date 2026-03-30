@@ -173,11 +173,3 @@ CREATE TABLE calificaciones (
     estado ENUM('ACTIVO', 'HISTORICO') DEFAULT 'ACTIVO',
     FOREIGN KEY (id_inscripcion) REFERENCES inscripciones (id_inscripcion)
 );
-
-INSERT INTO
-    usuarios (
-        nombre_usuario,
-        contrasena,
-        estado
-    )
-VALUES ('Admin', '123', TRUE);
