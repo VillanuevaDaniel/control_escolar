@@ -13,14 +13,27 @@ class Salon
     public function getAll()
     {
         $st = $this->db->query("SELECT * FROM salones ORDER BY nombre");
-        return $st->fetchAll();
+        $rows = $st->fetchAll();
+        return array_map([$this, '_defaults'], $rows);
     }
 
     public function getById($id)
     {
         $st = $this->db->prepare("SELECT * FROM salones WHERE id_salon = ?");
         $st->execute([$id]);
-        return $st->fetch();
+        $row = $st->fetch();
+        return $row ? $this->_defaults($row) : false;
+    }
+
+    /** Rellena campos extra que la vista usa pero no están en el schema */
+    private function _defaults($row)
+    {
+        return array_merge([
+            'edificio'    => '',
+            'tipo'        => 'Aula',
+            'estado'      => 'Activo',
+            'descripcion' => '',
+        ], $row);
     }
 
     public function create($datos)

@@ -37,25 +37,25 @@ include 'includes/header.php';
                     </a>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-3">
-                    <a href="<?php echo BASE_URL; ?>" class="quick-card">
+                    <a href="<?php echo BASE_URL; ?>grupos/create" class="quick-card">
                         <span class="material-symbols-outlined mb-2" style="font-size:32px;">group_add</span>
                         <span>Nuevo Grupo</span>
                     </a>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-3">
-                    <a href="<?php echo BASE_URL; ?>" class="quick-card">
+                    <a href="<?php echo BASE_URL; ?>horarios/create" class="quick-card">
                         <span class="material-symbols-outlined mb-2" style="font-size:32px;">more_time</span>
                         <span>Agregar Horario</span>
                     </a>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-3">
-                    <a href="<?php echo BASE_URL; ?>" class="quick-card">
+                    <a href="<?php echo BASE_URL; ?>calificaciones" class="quick-card">
                         <span class="material-symbols-outlined mb-2" style="font-size:32px;">assignment_turned_in</span>
                         <span>Calificaciones</span>
                     </a>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-3">
-                    <a href="<?php echo BASE_URL; ?>" class="quick-card">
+                    <a href="<?php echo BASE_URL; ?>reportes" class="quick-card">
                         <span class="material-symbols-outlined mb-2" style="font-size:32px;">analytics</span>
                         <span>Reportes</span>
                     </a>

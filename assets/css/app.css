@@ -3,7 +3,6 @@
    ============================================================ */
 
 /* ---------- TIPOGRAFÍA ---------- */
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap");
 
 body {
   font-family: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -600,4 +599,67 @@ select.form-control {
   main {
     padding: 1rem !important;
   }
+}
+
+/* ---------- MATERIAL SYMBOLS — alineación global ----------
+   Usamos contenedores Flexbox en lugar de vertical-align
+   para asegurar centrado perfecto (cross-axis alingment). */
+
+/* Para el icono por sí solo */
+.material-symbols-outlined {
+  line-height: 1;
+  vertical-align: middle; /* fallback */
+  flex-shrink: 0;
+}
+
+/* Botones como contenedores flex */
+.btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Compensación óptica para el ícono dentro de botones */
+.btn .material-symbols-outlined {
+  font-size: 20px;     /* Reducir levemente para text de 14px */
+  margin-top: -1px;    /* Micro-ajuste para Lexend */
+}
+
+/* Titulos (h1-h6) que contienen iconos */
+h1:has(.material-symbols-outlined),
+h2:has(.material-symbols-outlined),
+h3:has(.material-symbols-outlined),
+h4:has(.material-symbols-outlined),
+h5:has(.material-symbols-outlined),
+h6:has(.material-symbols-outlined) {
+  display: flex !important;
+  align-items: center;
+}
+
+/* Compensación óptica para los iconos en los títulos */
+h1 .material-symbols-outlined,
+h2 .material-symbols-outlined,
+h3 .material-symbols-outlined,
+h4 .material-symbols-outlined,
+h5 .material-symbols-outlined,
+h6 .material-symbols-outlined {
+  margin-top: -3px;   /* Subir óptimamente en títulos más grandes */
+}
+
+/* Enlaces/badges que contienen iconos */
+.dropdown-item, .breadcrumb-item, .badge {
+  display: inline-flex !important;
+  align-items: center;
+}
+.badge .material-symbols-outlined {
+  font-size: 14px;
+}
+
+/* Corregir pequeñas desviaciones ópticas en la card-header */
+.card-header {
+  display: flex !important;
+  align-items: center;
+}
+.card-header .float-right {
+  margin-left: auto;
 }

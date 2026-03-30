@@ -13,12 +13,11 @@ class Calificacion
     public function getAll()
     {
         $st = $this->db->query(
-            "SELECT c.*, i.id_alumno, a.matricula, a.nombre, a.apellido_paterno, o.id_materia, m.nombre AS materia
+            "SELECT c.*, i.id_alumno, a.matricula, a.nombre, a.apellido_paterno, m.id_materia, m.nombre AS materia
              FROM calificaciones c
              JOIN inscripciones i ON c.id_inscripcion = i.id_inscripcion
              JOIN alumnos a ON i.id_alumno = a.id_alumno
-             JOIN oferta_horario o ON i.id_oferta = o.id_oferta
-             JOIN materias m ON o.id_materia = m.id_materia
+             JOIN materias m ON i.id_materia = m.id_materia
              ORDER BY c.fecha_registro DESC"
         );
         return $st->fetchAll();

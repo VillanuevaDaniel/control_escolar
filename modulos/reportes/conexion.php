@@ -46,17 +46,16 @@ class Reporte
         $query = "SELECT m.nombre AS materia, c.puntaje, c.fecha_registro, c.etiqueta_periodo
                FROM calificaciones c
                JOIN inscripciones i ON c.id_inscripcion = i.id_inscripcion
-               JOIN oferta_horario o ON i.id_oferta = o.id_oferta
-               JOIN materias m ON o.id_materia = m.id_materia
+               JOIN materias m ON i.id_materia = m.id_materia
               WHERE i.id_alumno = ? AND c.estado = 'ACTIVO'";
 
         $params = [$id_alumno];
         if ($ciclo_escolar) {
-            $query .= " AND o.ciclo_escolar = ?";
+            $query .= " AND m.ciclo_escolar = ?";
             $params[] = $ciclo_escolar;
         }
 
-        $query .= " ORDER BY o.ciclo_escolar DESC, m.nombre";
+        $query .= " ORDER BY m.ciclo_escolar DESC, m.nombre";
 
         $st = $this->db->prepare($query);
         $st->execute($params);

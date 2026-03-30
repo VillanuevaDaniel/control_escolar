@@ -75,7 +75,7 @@
                             <select name="ciclo_id" class="form-control" style="border-radius:8px;">
                                 <option value="">Sin ciclo específico</option>
                                 <?php foreach ($ciclos as $c): ?>
-                                    <option value="<?php echo $c['id_materia']; ?>" <?php if ($datos['ciclo_id'] == $c['id_materia']) echo 'selected'; ?>><?php echo e($c['nombre']); ?></option>
+                                    <option value="<?php echo $c['id_materia'] ?? $c['id']; ?>" <?php if ($datos['ciclo_escolar'] == ($c['id_materia'] ?? $c['id']) || $datos['ciclo_id'] == ($c['id_materia'] ?? $c['id'])) echo 'selected'; ?>><?php echo e($c['nombre']); ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -85,6 +85,59 @@
                                 <option value="Activo" <?php if ($datos['estado'] === 'Activo') echo 'selected'; ?>>Activo</option>
                                 <option value="Inactivo" <?php if ($datos['estado'] === 'Inactivo') echo 'selected'; ?>>Inactivo</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" style="border-style:dashed;">
+                    <h6 class="font-weight-bold text-warning mb-3"><span class="material-symbols-outlined mr-2" style="font-size:20px; vertical-align:middle;">schedule</span>Horario y Asignación</h6>
+
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label class="small font-weight-bold text-secondary text-uppercase" style="letter-spacing:1px;">Docente</label>
+                            <select name="docente_id" class="form-control select2" style="border-radius:8px;">
+                                <option value="">Seleccionar Profesor...</option>
+                                <?php foreach ($docentes as $d): ?>
+                                    <option value="<?php echo $d['id_profesor']; ?>" <?php if (($datos['docente_id'] ?? $datos['id_profesor']) == $d['id_profesor']) echo 'selected'; ?>><?php echo e($d['nombre_completo']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="small font-weight-bold text-secondary text-uppercase" style="letter-spacing:1px;">Grupo</label>
+                            <select name="grupo_id" class="form-control" style="border-radius:8px;">
+                                <option value="">Seleccionar Grupo...</option>
+                                <?php foreach ($grupos as $g): ?>
+                                    <option value="<?php echo $g['id_grupo'] ?? $g['id']; ?>" <?php if (($datos['grupo_id'] ?? $datos['id_grupo']) == ($g['id_grupo'] ?? $g['id'])) echo 'selected'; ?>><?php echo e($g['nombre'] ?? ($g['grado'].$g['seccion'])); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="small font-weight-bold text-secondary text-uppercase" style="letter-spacing:1px;">Salón</label>
+                            <select name="salon_id" class="form-control" style="border-radius:8px;">
+                                <option value="">Seleccionar Salón...</option>
+                                <?php foreach ($salones as $s): ?>
+                                    <option value="<?php echo $s['id_salon']; ?>" <?php if (($datos['salon_id'] ?? $datos['id_salon']) == $s['id_salon']) echo 'selected'; ?>><?php echo e($s['nombre']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label class="small font-weight-bold text-secondary text-uppercase" style="letter-spacing:1px;">Día</label>
+                            <select name="dia" class="form-control" style="border-radius:8px;">
+                                <option value="">Seleccionar Día...</option>
+                                <?php foreach (array('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes') as $d): ?>
+                                    <option value="<?php echo strtoupper($d); ?>" <?php if (strtoupper($datos['dia']) === strtoupper($d)) echo 'selected'; ?>><?php echo $d; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="small font-weight-bold text-secondary text-uppercase" style="letter-spacing:1px;">Hora Inicio</label>
+                            <input type="time" name="hora_inicio" class="form-control" value="<?php echo e($datos['hora_inicio']); ?>" style="border-radius:8px;">
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="small font-weight-bold text-secondary text-uppercase" style="letter-spacing:1px;">Hora Fin</label>
+                            <input type="time" name="hora_fin" class="form-control" value="<?php echo e($datos['hora_fin']); ?>" style="border-radius:8px;">
                         </div>
                     </div>
 

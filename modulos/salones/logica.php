@@ -13,22 +13,60 @@ class SalonesController extends Controller
 
     public function index()
     {
+        $filtros = [
+            'q' => isset($_GET['q']) ? trim($_GET['q']) : '',
+        ];
+
         $salones = $this->salonModel->getAll();
-        $this->view('salones/index', ['salones' => $salones]);
+
+        if ($filtros['q']) {
+            $q = strtolower($filtros['q']);
+            $salones = array_filter($salones, function ($s) use ($q) {
+                return strpos(strtolower($s['nombre']),   $q) !== false
+                    || strpos(strtolower($s['edificio']), $q) !== false
+                    || strpos(strtolower($s['tipo']),     $q) !== false;
+            });
+        }
+
+        $this->view('salones/index', [
+            'salones' => $salones,
+            'filtros' => $filtros,
+        ]);
     }
 
     public function create()
     {
+        $errors = [];
+        $datos  = [
+            'nombre' => '', 'edificio' => '', 'tipo' => 'Aula',
+            'capacidad' => '', 'estado' => 'Activo', 'descripcion' => ''
+        ];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $datos = [
-                'nombre' => trim($_POST['nombre']),
-                'capacidad' => (int) $_POST['capacidad']
+                'nombre'      => trim($_POST['nombre']      ?? ''),
+                'edificio'    => trim($_POST['edificio']    ?? ''),
+                'tipo'        => $_POST['tipo']             ?? 'Aula',
+                'capacidad'   => (int) ($_POST['capacidad'] ?? 0),
+                'estado'      => $_POST['estado']           ?? 'Activo',
+                'descripcion' => trim($_POST['descripcion'] ?? ''),
             ];
-            $this->salonModel->create($datos);
-            header('Location: ' . BASE_URL . 'salones');
-            exit;
+
+            if ($datos['nombre'] === '') {
+                $errors[] = 'El nombre del salón es obligatorio.';
+            }
+
+            if (empty($errors)) {
+                $this->salonModel->create($datos);
+                header('Location: ' . BASE_URL . 'salones');
+                exit;
+            }
         }
-        $this->view('salones/create');
+
+        $this->view('salones/create', [
+            'errors' => $errors,
+            'datos'  => $datos,
+        ]);
     }
 
     public function edit($id)
@@ -39,16 +77,34 @@ class SalonesController extends Controller
             exit;
         }
 
+        $errors = [];
+        $datos  = $salon;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $datos = [
-                'nombre' => trim($_POST['nombre']),
-                'capacidad' => (int) $_POST['capacidad']
-            ];
-            $this->salonModel->update($id, $datos);
-            header('Location: ' . BASE_URL . 'salones');
-            exit;
+            $datos = array_merge($salon, [
+                'nombre'      => trim($_POST['nombre']      ?? ''),
+                'edificio'    => trim($_POST['edificio']    ?? ''),
+                'tipo'        => $_POST['tipo']             ?? 'Aula',
+                'capacidad'   => (int) ($_POST['capacidad'] ?? 0),
+                'estado'      => $_POST['estado']           ?? 'Activo',
+                'descripcion' => trim($_POST['descripcion'] ?? ''),
+            ]);
+
+            if ($datos['nombre'] === '') {
+                $errors[] = 'El nombre del salón es obligatorio.';
+            }
+
+            if (empty($errors)) {
+                $this->salonModel->update($id, $datos);
+                header('Location: ' . BASE_URL . 'salones');
+                exit;
+            }
         }
-        $this->view('salones/edit', ['salon' => $salon]);
+
+        $this->view('salones/edit', [
+            'errors' => $errors,
+            'datos'  => $datos,
+        ]);
     }
 
     public function delete($id)

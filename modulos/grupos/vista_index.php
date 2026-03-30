@@ -21,7 +21,7 @@
     <?php if (!$grupos): ?>
         <div class="col-12">
             <div class="card p-5 text-center text-muted border-0 shadow-sm" style="border-radius:12px;">
-                <span class="material-symbols-outlined" style="font-size:48px; opacity:0.2;">group_off</span>
+                <span class="material-symbols-outlined" style="font-size:48px; opacity:0.2;">group</span>
                 <p class="mt-2">No hay grupos registrados aún.</p>
             </div>
         </div>

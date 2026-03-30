@@ -119,7 +119,7 @@
 
 <?php elseif ($filtro_grupo && $filtro_materia && !$alumnos): ?>
     <div class="card border-0 shadow-sm text-center py-5" style="border-radius:12px;">
-        <span class="material-symbols-outlined text-muted mb-3" style="font-size:64px; opacity:0.3;">person_off</span>
+        <span class="material-symbols-outlined text-muted mb-3" style="font-size:64px; opacity:0.3;">person</span>
         <h5 class="text-secondary">No hay alumnos inscritos en este grupo</h5>
     </div>
 

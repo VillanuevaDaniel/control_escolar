@@ -51,16 +51,16 @@ function nav_link($modulo, $label, $icon, $url, $actual)
         <p class="sidebar-heading">Académico</p>
         <ul class="nav flex-column">
           <?php if (puede_ver('materias')): ?>
-            <?php nav_link('materias', 'Materias', 'menu_book', BASE_URL, $activo); ?>
+            <?php nav_link('materias', 'Materias', 'menu_book', BASE_URL . 'materias', $activo); ?>
           <?php endif; ?>
           <?php if (puede_ver('grupos')): ?>
-            <?php nav_link('grupos', 'Grupos', 'groups', BASE_URL, $activo); ?>
+            <?php nav_link('grupos', 'Grupos', 'groups', BASE_URL . 'grupos', $activo); ?>
           <?php endif; ?>
           <?php if (puede_ver('calificaciones')): ?>
-            <?php nav_link('calificaciones', 'Calificaciones', 'assignment_turned_in', BASE_URL, $activo); ?>
+            <?php nav_link('calificaciones', 'Calificaciones', 'assignment_turned_in', BASE_URL . 'calificaciones', $activo); ?>
           <?php endif; ?>
           <?php if (puede_ver('ciclos')): ?>
-            <?php nav_link('ciclos', 'Ciclos Escolares', 'event_repeat', BASE_URL, $activo); ?>
+            <?php nav_link('ciclos', 'Ciclos Escolares', 'event_repeat', BASE_URL . 'ciclos', $activo); ?>
           <?php endif; ?>
         </ul>
       <?php endif; ?>
@@ -69,10 +69,10 @@ function nav_link($modulo, $label, $icon, $url, $actual)
         <p class="sidebar-heading">Infraestructura</p>
         <ul class="nav flex-column">
           <?php if (puede_ver('salones')): ?>
-            <?php nav_link('salones', 'Salones', 'meeting_room', BASE_URL, $activo); ?>
+            <?php nav_link('salones', 'Salones', 'meeting_room', BASE_URL . 'salones', $activo); ?>
           <?php endif; ?>
           <?php if (puede_ver('horarios')): ?>
-            <?php nav_link('horarios', 'Horarios', 'calendar_month', BASE_URL, $activo); ?>
+            <?php nav_link('horarios', 'Horarios', 'calendar_month', BASE_URL . 'horarios', $activo); ?>
           <?php endif; ?>
         </ul>
       <?php endif; ?>
@@ -81,7 +81,7 @@ function nav_link($modulo, $label, $icon, $url, $actual)
         <p class="sidebar-heading">Administración</p>
         <ul class="nav flex-column">
           <?php if (puede_ver('reportes')): ?>
-            <?php nav_link('reportes', 'Reportes', 'analytics', BASE_URL, $activo); ?>
+            <?php nav_link('reportes', 'Reportes', 'analytics', BASE_URL . 'reportes', $activo); ?>
           <?php endif; ?>
           <?php if (puede_ver('usuarios')): ?>
             <?php nav_link('usuarios', 'Usuarios', 'admin_panel_settings', BASE_URL . 'usuarios', $activo); ?>

@@ -26,8 +26,8 @@ class InscripcionesController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $datos = [
                 'id_alumno' => $_POST['id_alumno'],
-                'id_oferta' => $_POST['id_oferta'],
-                'estado' => isset($_POST['estado']) ? 1 : 0
+                'id_materia'=> $_POST['id_materia'] ?? $_POST['id_oferta'],
+                'estado'    => isset($_POST['estado']) ? 1 : 0
             ];
             $this->inscripcionModel->create($datos);
             header('Location: ' . BASE_URL . 'inscripciones');
@@ -35,11 +35,12 @@ class InscripcionesController extends Controller
         }
 
         $alumnos = $this->alumnoModel->getAll();
-        $ofertas = $this->horarioModel->getAll();
+        $ofertas = $this->horarioModel->getAll(); // esto ahora retorna materias
 
         $this->view('inscripciones/create', [
-            'alumnos' => $alumnos,
-            'ofertas' => $ofertas
+            'alumnos'  => $alumnos,
+            'materias' => $ofertas,
+            'ofertas'  => $ofertas
         ]);
     }
 

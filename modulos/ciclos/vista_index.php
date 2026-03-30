@@ -7,14 +7,19 @@
     </ol>
 </nav>
 
-<div class="page-header">
-    <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">event_repeat</span>Ciclos Escolares</h1>
-    <p>Administración de los periodos académicos de la institución</p>
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">event_repeat</span>Ciclos Escolares</h1>
+        <p>Administración de los periodos académicos de la institución</p>
+    </div>
+    <a href="<?php echo BASE_URL; ?>ciclos/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+        <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">add_circle</span> Nuevo Ciclo
+    </a>
 </div>
 
 <div class="row">
     <!-- Tabla de ciclos -->
-    <div class="col-md-7 mb-4">
+    <div class="col-12 mb-4">
         <div class="card border-0 shadow-sm" style="border-radius:12px; overflow:hidden;">
             <div class="card-header bg-white font-weight-bold pt-3 pb-2">
                 <span class="material-symbols-outlined mr-2 text-primary" style="font-size:20px; vertical-align:middle;">list</span>
@@ -85,57 +90,7 @@
         </div>
     </div>
 
-    <!-- Formulario -->
-    <div class="col-md-5 mb-4">
-        <div class="card border-0 shadow-sm" style="border-radius:12px;">
-            <div class="card-header bg-white font-weight-bold pt-3 pb-2">
-                <span class="material-symbols-outlined mr-2 text-success" style="font-size:20px; vertical-align:middle;">add_circle</span>
-                Nuevo Ciclo Académico
-            </div>
-            <div class="card-body">
-                <?php if ($errors): ?>
-                    <div class="alert alert-danger py-2 small" style="border-radius:8px;">
-                        <ul class="mb-0"><?php foreach ($errors as $er) echo "<li>$er</li>"; ?></ul>
-                    </div>
-                <?php endif; ?>
-                <form method="post" action="<?php echo BASE_URL; ?>ciclos" class="check-dirty">
-                    <div class="form-group mb-3">
-                        <label class="small font-weight-bold text-secondary">Nombre descriptivo <span class="text-danger">*</span></label>
-                        <input type="text" name="nombre" class="form-control" value="<?php echo e($datos['nombre']); ?>" maxlength="50" placeholder="Ej: Ciclo Escolar 2025-2026" required style="border-radius:8px;">
-                    </div>
-                    <div class="row">
-                        <div class="col-6 form-group mb-3">
-                            <label class="small font-weight-bold text-secondary">Fecha de Inicio <span class="text-danger">*</span></label>
-                            <input type="date" name="fecha_inicio" class="form-control" value="<?php echo e($datos['fecha_inicio']); ?>" required style="border-radius:8px;">
-                        </div>
-                        <div class="col-6 form-group mb-3">
-                            <label class="small font-weight-bold text-secondary">Fecha de Término <span class="text-danger">*</span></label>
-                            <input type="date" name="fecha_fin" class="form-control" value="<?php echo e($datos['fecha_fin']); ?>" required style="border-radius:8px;">
-                        </div>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label class="small font-weight-bold text-secondary">Estado Inicial</label>
-                        <select name="estado" class="form-control" style="border-radius:8px;">
-                            <option value="Proximo" <?php if ($datos['estado'] === 'Proximo') echo 'selected'; ?>>Próximo Periodo</option>
-                            <option value="Activo" <?php if ($datos['estado'] === 'Activo')  echo 'selected'; ?>>Activo Inmediatamete</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block py-2" style="border-radius:8px; background:#197fe6; border:none; font-weight:600;">
-                        <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">save</span> Crear Ciclo
-                    </button>
-                </form>
-            </div>
-        </div>
 
-        <div class="mt-4 p-3 bg-light rounded-lg border">
-            <div class="d-flex align-items-center mb-2">
-                <span class="material-symbols-outlined text-warning mr-2" style="font-size:20px;">lightbulb</span>
-                <span class="font-weight-bold small">Tip institucional</span>
-            </div>
-            <p class="small text-muted mb-0">Al activar un nuevo ciclo, el sistema marcará automáticamente como "Cerrado" el ciclo que estaba activo previamente.</p>
-        </div>
-    </div>
-</div>
 
 <script>
     function confirmActivar(id, nombre) {

@@ -12,11 +12,6 @@
         <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">calendar_month</span>Horarios</h1>
         <p>Semana de clases<?php if ($ciclo): ?> &mdash; Ciclo <strong><?php echo e($ciclo['nombre']); ?></strong><?php endif; ?></p>
     </div>
-    <?php if ($u['rol'] === 'director' || $u['rol'] === 'admin'): ?>
-        <a href="<?php echo BASE_URL; ?>horarios/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
-            <span class="material-symbols-outlined mr-1" style="font-size:20px;">more_time</span> Agregar Clase
-        </a>
-    <?php endif; ?>
 </div>
 
 <!-- Filtros -->
@@ -27,7 +22,7 @@
             <select name="grupo" class="form-control" style="border-radius:8px;">
                 <option value="0">Todos los grupos</option>
                 <?php foreach ($grupos as $g): ?>
-                    <option value="<?php echo $g['id_oferta']; ?>" <?php if ($filtros['grupo_id'] == $g['id_oferta']) echo 'selected'; ?>><?php echo e($g['nombre']); ?></option>
+                    <option value="<?php echo $g['id_grupo']; ?>" <?php if ($filtros['grupo_id'] == $g['id_grupo']) echo 'selected'; ?>><?php echo e($g['nombre']); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -37,7 +32,7 @@
                 <select name="docente" class="form-control" style="border-radius:8px;">
                     <option value="0">Todos los docentes</option>
                     <?php foreach ($docentes as $d): ?>
-                        <option value="<?php echo $d['id_oferta']; ?>" <?php if ($filtros['docente_id'] == $d['id_oferta']) echo 'selected'; ?>><?php echo e($d['apellido_paterno'] . ' ' . $d['nombre']); ?></option>
+                        <option value="<?php echo $d['id_profesor']; ?>" <?php if ($filtros['docente_id'] == $d['id_profesor']) echo 'selected'; ?>><?php echo e($d['nombre_completo']); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -47,7 +42,7 @@
             <select name="salon" class="form-control" style="border-radius:8px;">
                 <option value="0">Todos los salones</option>
                 <?php foreach ($salones as $s): ?>
-                    <option value="<?php echo $s['id_oferta']; ?>" <?php if ($filtros['salon_id'] == $s['id_oferta']) echo 'selected'; ?>><?php echo e($s['nombre']); ?></option>
+                    <option value="<?php echo $s['id_salon']; ?>" <?php if ($filtros['salon_id'] == $s['id_salon']) echo 'selected'; ?>><?php echo e($s['nombre']); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -82,21 +77,6 @@
                             <div class="card-body p-3">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
                                     <h6 class="font-weight-bold mb-0 text-primary" style="font-size:14px;"><?php echo e($h['materia']); ?></h6>
-                                    <?php if ($u['rol'] === 'director' || $u['rol'] === 'admin'): ?>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link btn-sm text-muted p-0" data-toggle="dropdown">
-                                                <span class="material-symbols-outlined" style="font-size:18px;">more_vert</span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right shadow border-0" style="border-radius:8px;">
-                                                <a class="dropdown-item py-2" href="<?php echo BASE_URL; ?>horarios/edit/<?php echo $h['id_oferta']; ?>">
-                                                    <span class="material-symbols-outlined mr-2" style="font-size:16px; vertical-align:middle;">edit</span> Editar
-                                                </a>
-                                                <a class="dropdown-item py-2 text-danger" href="javascript:void(0)" onclick="confirmDelete(<?php echo $h['id_oferta']; ?>)">
-                                                    <span class="material-symbols-outlined mr-2" style="font-size:16px; vertical-align:middle;">delete</span> Eliminar
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <?php endif; ?>
                                 </div>
 
                                 <div class="mb-1 d-flex align-items-center text-dark">
@@ -126,14 +106,6 @@
         </div>
     <?php endforeach; ?>
 </div>
-
-<script>
-    function confirmDelete(id) {
-        if (confirm('¿Estás seguro de que deseas eliminar esta clase del horario?')) {
-            window.location.href = '<?php echo BASE_URL; ?>horarios/delete/' + id;
-        }
-    }
-</script>
 
 <style>
     .hover-shadow:hover {

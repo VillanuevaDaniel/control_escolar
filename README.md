@@ -113,6 +113,4 @@ Sigue estos pasos para echar a andar el proyecto en un entorno local (XAMPP):
    - Baja hasta el final y da clic al botón de **Importar** / **Continuar**.
    - Si todo salió bien, a tu lado izquierdo aparecerá la base de datos `control_escolar` generada ya con sus tablas y datos base bien estructurados dependiendo de sus llaves foráneas.
 4. **Validar conexión**: Asegúrate de que los credenciales de la variable PDO en `config/db.php` sean las por defecto para tu ambiente (casi siempre usuario `root` con contraseña en blanco para localhost).
-5. **Comprobar acceso**: Entra desde tu navegador a `http://localhost/ControlEscolarPHP`. En la pantalla inicial de Login utiliza los datos de administrador por defecto que están incluidos dentro del archivo SQL:
-   - **Usuario**: Admin
-   - **Contraseña**: 123
+5. **Comprobar acceso**: Entra desde tu navegador a `http://localhost/ControlEscolarPHP`.

@@ -21,7 +21,8 @@ spl_autoload_register(function ($className) {
     'InscripcionesController' => 'inscripciones/logica.php',
     'MateriasController' => 'materias/logica.php',
     'ReportesController' => 'reportes/logica.php',
-    'SalonesController' => 'salones/logica.php',
+    'CiclosController'   => 'ciclos/logica.php',
+    'SalonesController'  => 'salones/logica.php',
     'UsuariosController' => 'usuarios/logica.php',
 
     'Alumno' => 'alumnos/conexion.php',
@@ -33,8 +34,9 @@ spl_autoload_register(function ($className) {
     'Inscripcion' => 'inscripciones/conexion.php',
     'Materia' => 'materias/conexion.php',
     'Reporte' => 'reportes/conexion.php',
-    'Salon' => 'salones/conexion.php',
-    'Usuario' => 'usuarios/conexion.php',
+    'CicloEscolar' => 'ciclos/conexion.php',
+    'Salon'        => 'salones/conexion.php',
+    'Usuario'      => 'usuarios/conexion.php',
   ];
 
   if (isset($map[$className])) {

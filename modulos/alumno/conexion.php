@@ -12,22 +12,27 @@ class AlumnoPortal
 
     public function getGrupoId($alumno_id, $ciclo_id)
     {
-        $st = $this->db->prepare("SELECT grupo_id FROM alumnos_grupos WHERE alumno_id = ? AND activo = 1 AND ciclo_id = ? LIMIT 1");
-        $st->execute([$alumno_id, $ciclo_id]);
+        $st = $this->db->prepare(
+            "SELECT g.id_grupo 
+             FROM alumno_grupo ag 
+             JOIN grupos g ON ag.id_grupo = g.id_grupo
+             WHERE ag.id_alumno = ? 
+             LIMIT 1"
+        );
+        $st->execute([$alumno_id]);
         $rel = $st->fetch();
-        return $rel ? $rel['grupo_id'] : null;
+        return $rel ? $rel['id_grupo'] : null;
     }
 
     public function getHorario($grupo_id, $ciclo_id)
     {
         $st = $this->db->prepare(
-            "SELECT h.*, m.nombre AS materia, CONCAT(d.nombre, ' ', d.apellido_p) AS docente, s.nombre AS salon
-               FROM horarios h
-               JOIN materias m ON m.id = h.materia_id
-               JOIN docentes d ON d.id = h.docente_id
-               JOIN salones  s ON s.id = h.salon_id
-              WHERE h.grupo_id = ? AND h.ciclo_id = ?
-              ORDER BY FIELD(h.dia, 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'), h.hora_inicio"
+            "SELECT m.*, m.nombre AS materia, p.nombre_completo AS docente, s.nombre AS salon
+               FROM materias m
+               LEFT JOIN profesores p ON p.id_profesor = m.id_profesor
+               LEFT JOIN salones s ON s.id_salon = m.id_salon
+              WHERE m.id_grupo = ? OR m.ciclo_escolar = ?
+              ORDER BY FIELD(m.dia, 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES'), m.hora_inicio"
         );
         $st->execute([$grupo_id, $ciclo_id]);
         return $st->fetchAll();
@@ -36,13 +41,14 @@ class AlumnoPortal
     public function getCalificaciones($alumno_id, $ciclo_id)
     {
         $st = $this->db->prepare(
-            "SELECT m.nombre AS materia, m.clave, c.calificacion, c.fecha_registro
-               FROM calificaciones c
-               JOIN materias m ON m.id = c.materia_id
-              WHERE c.alumno_id = ? AND c.ciclo_id = ? AND c.estado = 'Activo'
+            "SELECT m.nombre AS materia, i.id_inscripcion, c.puntaje AS calificacion, c.fecha_registro
+               FROM inscripciones i
+               JOIN materias m ON m.id_materia = i.id_materia
+               LEFT JOIN calificaciones c ON c.id_inscripcion = i.id_inscripcion
+              WHERE i.id_alumno = ?
               ORDER BY m.nombre"
         );
-        $st->execute([$alumno_id, $ciclo_id]);
+        $st->execute([$alumno_id]);
         return $st->fetchAll();
     }
 }

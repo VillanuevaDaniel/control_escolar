@@ -85,7 +85,7 @@
                     <?php if (!$alumnos): ?>
                         <tr>
                             <td colspan="6" class="text-center text-muted py-5">
-                                <span class="material-symbols-outlined" style="font-size:48px; opacity:0.2;">person_off</span>
+                                <span class="material-symbols-outlined" style="font-size:48px; opacity:0.2;">person</span>
                                 <p class="mt-2">No se encontraron alumnos.</p>
                             </td>
                         </tr>

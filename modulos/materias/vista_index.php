@@ -72,7 +72,7 @@
                     <?php if (!$materias): ?>
                         <tr>
                             <td colspan="7" class="text-center text-muted py-5">
-                                <span class="material-symbols-outlined" style="font-size:48px; opacity:0.2;">book_off</span>
+                                <span class="material-symbols-outlined" style="font-size:48px; opacity:0.2;">menu_book</span>
                                 <p class="mt-2">No se encontraron materias.</p>
                             </td>
                         </tr>

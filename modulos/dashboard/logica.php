@@ -12,7 +12,6 @@ class DashboardController extends Controller
         $u   = session_user();
         $pdo = db_connect();
 
-        // ── Si es profesor: sus horarios de hoy ──────────────────
         $mis_horarios_hoy = array();
         if ($u['tipo'] === 'docente' || $u['rol'] === 'profesor') {
             $dias_es = array(
@@ -30,13 +29,12 @@ class DashboardController extends Controller
 
             if ($hoy && $profesor) {
                 $st = $pdo->prepare(
-                    "SELECT h.hora_inicio, h.hora_fin, m.nombre AS materia, g.grado, g.seccion, s.nombre AS salon
-                           FROM oferta_horario h
-                           JOIN materias m ON m.id_materia = h.id_materia
-                           LEFT JOIN grupos g ON g.id_grupo = h.id_grupo
-                           JOIN salones  s ON s.id_salon = h.id_salon
-                          WHERE h.id_profesor = ? AND h.dia = ? AND h.estado = 1
-                          ORDER BY h.hora_inicio"
+                    "SELECT m.hora_inicio, m.hora_fin, m.nombre AS materia, g.grado, g.seccion, s.nombre AS salon
+                           FROM materias m
+                           LEFT JOIN grupos g ON g.id_grupo = m.id_grupo
+                           LEFT JOIN salones  s ON s.id_salon = m.id_salon
+                          WHERE m.id_profesor = ? AND m.dia = ? 
+                          ORDER BY m.hora_inicio"
                 );
                 $st->execute(array($profesor, $hoy));
                 $mis_horarios_hoy = $st->fetchAll();

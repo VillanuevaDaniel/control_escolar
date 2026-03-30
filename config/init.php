@@ -1,12 +1,7 @@
 <?php
-// ============================================================
-//  config/init.php — Bootstrap general de la aplicación
-// ============================================================
 
-// URL base (ajustar según entorno)
 define('BASE_URL', '/ControlEscolarPHP/');
 
-// Zona horaria
 date_default_timezone_set('America/Mexico_City');
 
 // Reporte de errores (en producción cambiar a 0)

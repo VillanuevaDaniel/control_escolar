@@ -22,29 +22,6 @@ $(document).ready(function () {
     }
   });
 
-  /* ── Preview de foto en formularios ──────────────────── */
-  $(document).on("change", "#foto_file", function () {
-    var file = this.files && this.files[0];
-    if (!file) return;
-    if (file.size > 2 * 1024 * 1024) {
-      alert("La imagen no debe superar 2 MB.");
-      this.value = "";
-      return;
-    }
-    var reader = new FileReader();
-    reader.onload = function (ev) {
-      $("#foto-preview-wrap").html(
-        '<img src="' + ev.target.result + '" alt="foto">',
-      );
-      $("#foto_base64").val(ev.target.result);
-    };
-    reader.readAsDataURL(file);
-  });
-
-  /* Clic en el preview abre el file input */
-  $(document).on("click", "#foto-preview-wrap", function () {
-    $("#foto_file").trigger("click");
-  });
 
   /* ── Tooltip Bootstrap 4 ─────────────────────────────── */
   if (typeof $.fn.tooltip !== "undefined") {
