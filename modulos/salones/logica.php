@@ -34,6 +34,14 @@ class SalonesController extends Controller
         ]);
     }
 
+    public function search_edit()
+    {
+        $salones = $this->salonModel->getAll();
+        $this->view('salones/search_edit', [
+            'salones' => $salones
+        ]);
+    }
+
     public function create()
     {
         $errors = [];

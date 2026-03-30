@@ -62,4 +62,18 @@ class CicloEscolar
         );
         return $st->execute([$id]);
     }
+
+    public function update($id, $datos)
+    {
+        $st = $this->db->prepare(
+            "UPDATE ciclos_escolares SET nombre=?, fecha_inicio=?, fecha_fin=?, estado=? WHERE id=?"
+        );
+        return $st->execute([
+            $datos['nombre'],
+            $datos['fecha_inicio'],
+            $datos['fecha_fin'],
+            $datos['estado'],
+            $id,
+        ]);
+    }
 }

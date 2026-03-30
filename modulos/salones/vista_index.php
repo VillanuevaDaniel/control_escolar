@@ -12,9 +12,14 @@
         <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">meeting_room</span>Salones</h1>
         <p>Inventario de espacios físicos</p>
     </div>
-    <a href="<?php echo BASE_URL; ?>salones/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
-        <span class="material-symbols-outlined mr-1" style="font-size:20px;">add_circle</span> Nuevo Salón
-    </a>
+    <div class="d-flex">
+        <a href="<?php echo BASE_URL; ?>salones/search_edit" class="btn btn-outline-primary mr-2" style="border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">edit</span> Editar Salón
+        </a>
+        <a href="<?php echo BASE_URL; ?>salones/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">add_circle</span> Nuevo Salón
+        </a>
+    </div>
 </div>
 
 <!-- Filtros -->

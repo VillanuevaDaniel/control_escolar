@@ -18,6 +18,14 @@ class UsuariosController extends Controller
         $this->view('usuarios/index', ['usuarios' => $usuarios]);
     }
 
+    public function search_edit()
+    {
+        $usuarios = $this->usuarioModel->getAll();
+        $this->view('usuarios/search_edit', [
+            'usuarios' => $usuarios
+        ]);
+    }
+
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

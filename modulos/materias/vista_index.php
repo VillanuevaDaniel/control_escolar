@@ -12,9 +12,14 @@
         <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">menu_book</span>Materias</h1>
         <p>Catálogo de materias del plantel</p>
     </div>
-    <a href="<?php echo BASE_URL; ?>materias/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
-        <span class="material-symbols-outlined mr-1" style="font-size:20px;">add_box</span> Nueva Materia
-    </a>
+    <div class="d-flex">
+        <a href="<?php echo BASE_URL; ?>materias/search_edit" class="btn btn-outline-primary mr-2" style="border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">edit</span> Editar Materia
+        </a>
+        <a href="<?php echo BASE_URL; ?>materias/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">add_box</span> Nueva Materia
+        </a>
+    </div>
 </div>
 
 <!-- Filtros -->

@@ -13,9 +13,14 @@
         <p>Gestión de estudiantes registrados</p>
     </div>
     <?php if (puede_ver('alumnos') && ($GLOBALS['_SESSION']['usuario_rol'] ?? '') !== 'profesor'): ?>
-        <a href="<?php echo BASE_URL; ?>alumnos/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
-            <span class="material-symbols-outlined mr-1" style="font-size:20px;">person_add</span> Nuevo Alumno
-        </a>
+        <div class="d-flex">
+            <a href="<?php echo BASE_URL; ?>alumnos/search_edit" class="btn btn-outline-primary mr-2" style="border-radius:8px; padding: 10px 20px; font-weight:600;">
+                <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">edit</span> Editar Alumno
+            </a>
+            <a href="<?php echo BASE_URL; ?>alumnos/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+                <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">person_add</span> Nuevo Alumno
+            </a>
+        </div>
     <?php endif; ?>
 </div>
 

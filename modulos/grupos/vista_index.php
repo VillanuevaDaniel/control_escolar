@@ -12,9 +12,14 @@
         <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">groups</span>Grupos</h1>
         <p>Gestión de grupos escolares</p>
     </div>
-    <a href="<?php echo BASE_URL; ?>grupos/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
-        <span class="material-symbols-outlined mr-1" style="font-size:20px;">group_add</span> Nuevo Grupo
-    </a>
+    <div class="d-flex">
+        <a href="<?php echo BASE_URL; ?>grupos/search_edit" class="btn btn-outline-primary mr-2" style="border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">edit</span> Editar Grupo
+        </a>
+        <a href="<?php echo BASE_URL; ?>grupos/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">group_add</span> Nuevo Grupo
+        </a>
+    </div>
 </div>
 
 <div class="row">

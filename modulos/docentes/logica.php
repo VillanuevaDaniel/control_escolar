@@ -41,6 +41,14 @@ class DocentesController extends Controller
         ]);
     }
 
+    public function search_edit()
+    {
+        $docentes = $this->docenteModel->getAll();
+        $this->view('docentes/search_edit', [
+            'docentes' => $docentes
+        ]);
+    }
+
     public function create()
     {
         $datos = [

@@ -19,6 +19,16 @@ class GruposController extends Controller
         $this->view('grupos/index', ['grupos' => $grupos]);
     }
 
+    public function search_edit()
+    {
+        $grupos = $this->grupoModel->getAll();
+        $ciclos = $this->cicloModel->getAll();
+        $this->view('grupos/search_edit', [
+            'grupos'  => $grupos,
+            'ciclos'  => $ciclos
+        ]);
+    }
+
     public function create()
     {
         $errors = [];

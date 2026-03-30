@@ -43,6 +43,28 @@ class AlumnosController extends Controller
         ]);
     }
 
+    public function search_edit()
+    {
+        $alumnos = $this->alumnoModel->getAll();
+        
+        // Incluir login_id en la lista para el buscador si no está
+        foreach ($alumnos as &$a) {
+            if (!isset($a['login_id'])) {
+                // Pequeño hack si el modelo no fue actualizado correctamente antes
+                $a['login_id'] = $a['id_usuario'] ? 'ID:'.$a['id_usuario'] : 'Sin usuario';
+            }
+        }
+
+        $modulo_activo = 'alumnos';
+        $grupos = []; // TODO: Cargar grupos reales
+        
+        $this->view('alumnos/search_edit', [
+            'alumnos' => $alumnos,
+            'grupos' => $grupos,
+            'modulo_activo' => $modulo_activo
+        ]);
+    }
+
     public function create()
     {
         $datos = [

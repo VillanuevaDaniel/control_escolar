@@ -12,9 +12,14 @@
         <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">badge</span>Docentes</h1>
         <p>Gestión del personal docente</p>
     </div>
-    <a href="<?php echo BASE_URL; ?>docentes/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
-        <span class="material-symbols-outlined mr-1" style="font-size:20px;">person_add</span> Nuevo Docente
-    </a>
+    <div class="d-flex">
+        <a href="<?php echo BASE_URL; ?>docentes/search_edit" class="btn btn-outline-primary mr-2" style="border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">edit</span> Editar Docente
+        </a>
+        <a href="<?php echo BASE_URL; ?>docentes/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">person_add</span> Nuevo Docente
+        </a>
+    </div>
 </div>
 
 <!-- Filtros -->

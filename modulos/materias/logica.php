@@ -48,6 +48,23 @@ class MateriasController extends Controller
         ]);
     }
 
+    public function search_edit()
+    {
+        $materias = $this->materiaModel->getAll();
+        $docentes = (new Docente())->getAll();
+        $salones  = (new Salon())->getAll();
+        $grupos   = (new Grupo())->getAll();
+        $ciclos   = (new CicloEscolar())->getAll();
+
+        $this->view('materias/search_edit', [
+            'materias' => $materias,
+            'docentes' => $docentes,
+            'salones'  => $salones,
+            'grupos'   => $grupos,
+            'ciclos'   => $ciclos
+        ]);
+    }
+
     public function create()
     {
         $errors = [];

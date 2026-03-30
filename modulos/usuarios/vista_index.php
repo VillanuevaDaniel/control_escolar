@@ -12,9 +12,14 @@
         <h1><span class="material-symbols-outlined mr-2" style="font-size:28px;">manage_accounts</span>Gestión de Usuarios</h1>
         <p>Administración de personal con acceso al sistema</p>
     </div>
-    <a href="<?php echo BASE_URL; ?>usuarios/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding:10px 20px; font-weight:600;">
-        <span class="material-symbols-outlined mr-1" style="font-size:20px;">person_add</span> Nuevo Usuario
-    </a>
+    <div class="d-flex">
+        <a href="<?php echo BASE_URL; ?>usuarios/search_edit" class="btn btn-outline-primary mr-2" style="border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">edit</span> Editar Usuario
+            </a>
+        <a href="<?php echo BASE_URL; ?>usuarios/create" class="btn btn-primary" style="background:#197fe6; border:none; border-radius:8px; padding: 10px 20px; font-weight:600;">
+            <span class="material-symbols-outlined mr-1" style="font-size:20px; vertical-align:middle;">person_add</span> Nuevo Usuario
+        </a>
+    </div>
 </div>
 
 <div class="card border-0 shadow-sm" style="border-radius:12px; overflow:hidden;">
