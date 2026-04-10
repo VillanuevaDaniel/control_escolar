@@ -8,6 +8,11 @@ function require_auth()
         header('Location: ' . BASE_URL . 'index.php');
         exit;
     }
+
+    // Prevenir caché de la página para que no se pueda regresar tras cerrar sesión
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Cache-Control: post-check=0, pre-check=0', false);
+    header('Pragma: no-cache');
 }
 
 // Retorna los datos del usuario en sesión

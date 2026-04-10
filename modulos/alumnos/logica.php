@@ -49,10 +49,8 @@ class AlumnosController extends Controller
         
         // Incluir login_id en la lista para el buscador si no está
         foreach ($alumnos as &$a) {
-            if (!isset($a['login_id'])) {
-                // Pequeño hack si el modelo no fue actualizado correctamente antes
-                $a['login_id'] = $a['id_usuario'] ? 'ID:'.$a['id_usuario'] : 'Sin usuario';
-            }
+            $a['login_id'] = $a['id_usuario'] ? 'ID:'.$a['id_usuario'] : 'Sin usuario';
+            // Mapear para que el autocompletado lo tenga listo (opcional ya que el JS lo hace, pero mejor ser consistentes)
         }
 
         $modulo_activo = 'alumnos';
@@ -89,16 +87,17 @@ class AlumnosController extends Controller
             $datos = [
                 'matricula' => trim($_POST['matricula']),
                 'nombre' => trim($_POST['nombre']),
-                'apellido_paterno' => trim($_POST['apellido_paterno']),
-                'apellido_materno' => trim($_POST['apellido_materno']),
+                'apellido_paterno' => trim($_POST['apellido_p'] ?? ''),
+                'apellido_materno' => trim($_POST['apellido_m'] ?? ''),
                 'curp' => trim($_POST['curp']),
-                'genero' => $_POST['genero'],
-                'domicilio' => trim($_POST['domicilio']),
-                'escuela_procedencia' => trim($_POST['escuela_procedencia']),
-                'nombre_tutor' => trim($_POST['nombre_tutor']),
-                'telefono_tutor' => trim($_POST['telefono_tutor']),
-                'comentarios' => trim($_POST['comentarios']),
-                'estado' => isset($_POST['estado']) ? 1 : 0
+                'genero' => $_POST['sexo'] ?? '',
+                'fecha_nac' => $_POST['fecha_nac'] ?? null,
+                'domicilio' => trim($_POST['direccion'] ?? ''),
+                'escuela_procedencia' => trim($_POST['escuela_procedencia'] ?? ''),
+                'nombre_tutor' => trim($_POST['tutor_nombre'] ?? ''),
+                'telefono_tutor' => trim($_POST['tutor_telefono'] ?? ''),
+                'comentarios' => trim($_POST['comentarios_familia'] ?? ''),
+                'estado' => isset($_POST['estado']) && $_POST['estado'] !== 'Inactivo' && $_POST['estado'] !== 'Baja' ? 1 : 0
             ];
 
             // Subir foto si existe
@@ -127,23 +126,34 @@ class AlumnosController extends Controller
             $datos = [
                 'matricula' => trim($_POST['matricula']),
                 'nombre' => trim($_POST['nombre']),
-                'apellido_paterno' => trim($_POST['apellido_paterno']),
-                'apellido_materno' => trim($_POST['apellido_materno']),
+                'apellido_paterno' => trim($_POST['apellido_p'] ?? ''),
+                'apellido_materno' => trim($_POST['apellido_m'] ?? ''),
                 'curp' => trim($_POST['curp']),
-                'genero' => $_POST['genero'],
-                'domicilio' => trim($_POST['domicilio']),
-                'escuela_procedencia' => trim($_POST['escuela_procedencia']),
-                'nombre_tutor' => trim($_POST['nombre_tutor']),
-                'telefono_tutor' => trim($_POST['telefono_tutor']),
-                'comentarios' => trim($_POST['comentarios']),
-                'estado' => isset($_POST['estado']) ? 1 : 0
+                'genero' => $_POST['sexo'] ?? '',
+                'fecha_nac' => $_POST['fecha_nac'] ?? null,
+                'domicilio' => trim($_POST['direccion'] ?? ''),
+                'escuela_procedencia' => trim($_POST['escuela_procedencia'] ?? ''),
+                'nombre_tutor' => trim($_POST['tutor_nombre'] ?? ''),
+                'telefono_tutor' => trim($_POST['tutor_telefono'] ?? ''),
+                'comentarios' => trim($_POST['comentarios_familia'] ?? ''),
+                'estado' => isset($_POST['estado']) && $_POST['estado'] !== 'Inactivo' && $_POST['estado'] !== 'Baja' ? 1 : 0
             ];
             $this->alumnoModel->update($id, $datos);
             header('Location: ' . BASE_URL . 'alumnos');
             exit;
         }
+        if ($alumno) {
+            $alumno['direccion'] = $alumno['domicilio'];
+            $alumno['tutor_nombre'] = $alumno['nombre_tutor'];
+            $alumno['tutor_telefono'] = $alumno['telefono_tutor'];
+            $alumno['comentarios_familia'] = $alumno['comentarios'];
+            $alumno['estado'] = $alumno['estado'] ? 'Activo' : 'Inactivo';
+            // Mapear género de M/F a Masculino/Femenino
+            if ($alumno['genero'] == 'M') $alumno['genero'] = 'Masculino';
+            if ($alumno['genero'] == 'F') $alumno['genero'] = 'Femenino';
+        }
         $modulo_activo = 'alumnos';
-        $this->view('alumnos/edit', ['alumno' => $alumno, 'modulo_activo' => $modulo_activo, 'errors' => []]);
+        $this->view('alumnos/edit', ['datos' => $alumno, 'grupos' => [], 'modulo_activo' => $modulo_activo, 'errors' => []]);
     }
 
     public function delete($id)

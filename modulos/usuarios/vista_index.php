@@ -33,7 +33,6 @@
                 <tr>
                     <th class="pl-4">Nombre de usuario</th>
                     <th class="text-center">Estado</th>
-                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,16 +46,7 @@
                                 <?php echo $u['estado'] ? 'ACTIVO' : 'INACTIVO'; ?>
                             </span>
                         </td>
-                        <td class="align-middle text-center no-wrap">
-                            <a href="<?php echo BASE_URL; ?>usuarios/edit/<?php echo $u['id_usuario']; ?>" class="btn btn-sm btn-outline-warning mx-1" title="Editar" style="border-radius:8px; width:36px; height:36px; padding:0; display:inline-flex; align-items:center; justify-content:center;">
-                                <span class="material-symbols-outlined" style="font-size:18px;">edit</span>
-                            </a>
-                            <?php if ($u['id_usuario'] !== $_SESSION['usuario_id']): ?>
-                                <a href="javascript:void(0)" onclick="confirmDelete(<?php echo $u['id_usuario']; ?>, '<?php echo addslashes($u['nombre_usuario']); ?>')" class="btn btn-sm btn-outline-danger mx-1" title="Eliminar" style="border-radius:8px; width:36px; height:36px; padding:0; display:inline-flex; align-items:center; justify-content:center;">
-                                    <span class="material-symbols-outlined" style="font-size:18px;">delete</span>
-                                </a>
-                            <?php endif; ?>
-                        </td>
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>

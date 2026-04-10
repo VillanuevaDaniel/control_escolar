@@ -26,6 +26,14 @@
   <!--[if lt IE 9]>
   <script src="<?php echo BASE_URL; ?>assets/js/html5shiv.min.js"></script>
   <![endif]-->
+  <script>
+    // Forzar recarga si la página se carga desde la caché de "Adelante/Atrás" del navegador
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+  </script>
 </head>
 
 <body class="bg-light">

@@ -62,9 +62,10 @@
 
 <script>
 $(document).ready(function() {
-    var items = <?php echo json_encode(array_values(array_map(function($u) {
+    var items = <?php echo json_encode(array_values(array_filter(array_map(function($u) {
+        if ($u['id_usuario'] == $_SESSION['usuario_id']) return null;
         return ['id' => $u['id_usuario'], 'label' => $u['nombre_usuario'], 'data' => $u];
-    }, $usuarios)), JSON_HEX_TAG | JSON_HEX_APOS); ?> || [];
+    }, $usuarios))), JSON_HEX_TAG | JSON_HEX_APOS); ?> || [];
 
     var $input = $('#user_search');
     var $results = $('#user_results');

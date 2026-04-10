@@ -83,7 +83,6 @@
                         <th>CURP</th>
                         <th>Sexo</th>
                         <th>Estado</th>
-                        <th>Grupo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,19 +127,7 @@
                                 ?>
                                 <span class="badge badge-<?php echo $badge; ?>"><?php echo e($a['estado']); ?></span>
                             </td>
-                            <td class="pr-4 text-center">
-                                <div class="d-flex justify-content-center">
-                                    <a href="<?php echo BASE_URL; ?>alumnos/show/<?php echo $a['id_alumno']; ?>" class="btn-action mr-1" title="Ver">
-                                        <span class="material-symbols-outlined">visibility</span>
-                                    </a>
-                                    <a href="<?php echo BASE_URL; ?>alumnos/edit/<?php echo $a['id_alumno']; ?>" class="btn-action mr-1" title="Editar">
-                                        <span class="material-symbols-outlined">edit</span>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="confirmDelete(<?php echo $a['id_alumno']; ?>)" class="btn-action delete" title="Eliminar">
-                                        <span class="material-symbols-outlined">delete</span>
-                                    </a>
-                                </div>
-                            </td>
+
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

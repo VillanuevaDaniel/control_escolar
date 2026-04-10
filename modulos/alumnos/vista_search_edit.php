@@ -110,6 +110,10 @@
                                 <input type="text" name="tutor_telefono" id="f_tutor_telefono" class="form-control" maxlength="20" style="border-radius:8px;">
                             </div>
                         </div>
+                        <div class="form-group mb-0">
+                            <label class="small font-weight-bold">Comentarios / Observaciones</label>
+                            <textarea name="comentarios_familia" id="f_comentarios" class="form-control" rows="3" data-maxlength="500" style="border-radius:8px;"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -190,13 +194,14 @@ $(document).ready(function() {
         $('#f_nombre').val(data.nombre);
         $('#f_apellido_p').val(data.apellido_paterno);
         $('#f_apellido_m').val(data.apellido_materno);
-        $('#f_estado').val(data.estado);
-        $('#f_sexo').val(data.genero || '');
+        $('#f_estado').val(data.estado == 1 ? 'Activo' : 'Inactivo');
+        $('#f_sexo').val(data.genero == 'M' ? 'Masculino' : (data.genero == 'F' ? 'Femenino' : (data.genero || '')));
         $('#f_fecha_nac').val(data.fecha_nac || '');
         $('#f_escuela').val(data.escuela_procedencia || '');
-        $('#f_direccion').val(data.domicilio || data.direccion || '');
-        $('#f_tutor_nombre').val(data.nombre_tutor || data.tutor_nombre || '');
-        $('#f_tutor_telefono').val(data.telefono_tutor || data.tutor_telefono || '');
+        $('#f_direccion').val(data.domicilio || '');
+        $('#f_tutor_nombre').val(data.nombre_tutor || '');
+        $('#f_tutor_telefono').val(data.telefono_tutor || '');
+        $('#f_comentarios').val(data.comentarios || '');
 
         if (data.ruta_foto) {
             $('#foto_img').attr('src', data.ruta_foto).removeClass('d-none');

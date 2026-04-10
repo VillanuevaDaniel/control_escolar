@@ -12,7 +12,7 @@ class Alumno
 
     public function getAll()
     {
-        $st = $this->db->query("SELECT id_alumno, id_usuario, matricula, nombre, apellido_paterno, apellido_materno, curp, telefono_tutor, estado FROM alumnos ORDER BY nombre");
+        $st = $this->db->query("SELECT * FROM alumnos ORDER BY nombre");
         return $st->fetchAll();
     }
 
@@ -26,8 +26,8 @@ class Alumno
     public function create($datos, $id_usuario = null)
     {
         $st = $this->db->prepare(
-            "INSERT INTO alumnos (id_usuario, matricula, nombre, apellido_paterno, apellido_materno, curp, genero, domicilio, escuela_procedencia, ruta_foto, nombre_tutor, telefono_tutor, comentarios, estado)
-             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            "INSERT INTO alumnos (id_usuario, matricula, nombre, apellido_paterno, apellido_materno, curp, genero, fecha_nac, domicilio, escuela_procedencia, ruta_foto, nombre_tutor, telefono_tutor, comentarios, estado)
+             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         );
         return $st->execute(array(
             $id_usuario,
@@ -37,6 +37,7 @@ class Alumno
             $datos['apellido_materno'],
             $datos['curp'],
             $datos['genero'],
+            $datos['fecha_nac'] ?? null,
             $datos['domicilio'],
             $datos['escuela_procedencia'],
             $datos['ruta_foto'] ?? null,
@@ -50,7 +51,7 @@ class Alumno
     public function update($id, $datos)
     {
         $st = $this->db->prepare(
-            "UPDATE alumnos SET matricula=?, nombre=?, apellido_paterno=?, apellido_materno=?, curp=?, genero=?, domicilio=?, escuela_procedencia=?, ruta_foto=?, nombre_tutor=?, telefono_tutor=?, comentarios=?, estado=?
+            "UPDATE alumnos SET matricula=?, nombre=?, apellido_paterno=?, apellido_materno=?, curp=?, genero=?, fecha_nac=?, domicilio=?, escuela_procedencia=?, ruta_foto=?, nombre_tutor=?, telefono_tutor=?, comentarios=?, estado=?
              WHERE id_alumno=?"
         );
         return $st->execute(array(
@@ -60,6 +61,7 @@ class Alumno
             $datos['apellido_materno'],
             $datos['curp'],
             $datos['genero'],
+            $datos['fecha_nac'] ?? null,
             $datos['domicilio'],
             $datos['escuela_procedencia'],
             $datos['ruta_foto'] ?? null,

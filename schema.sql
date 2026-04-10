@@ -61,6 +61,7 @@ CREATE TABLE alumnos (
     apellido_materno VARCHAR(50),
     curp VARCHAR(18) UNIQUE,
     genero CHAR(1),
+    fecha_nac DATE,
     domicilio VARCHAR(150),
     escuela_procedencia VARCHAR(100),
     ruta_foto VARCHAR(255),
@@ -173,3 +174,11 @@ CREATE TABLE calificaciones (
     estado ENUM('ACTIVO', 'HISTORICO') DEFAULT 'ACTIVO',
     FOREIGN KEY (id_inscripcion) REFERENCES inscripciones (id_inscripcion)
 );
+
+INSERT INTO
+    usuarios (
+        nombre_usuario,
+        contrasena,
+        estado
+    )
+VALUES ('admin', '123', 1);

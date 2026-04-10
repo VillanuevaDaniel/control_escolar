@@ -43,6 +43,9 @@ class UsuariosController extends Controller
 
     public function edit($id)
     {
+        if ($id == $_SESSION['usuario_id']) {
+            redirect(BASE_URL . 'usuarios', 'No puedes editar el usuario activo.', 'danger');
+        }
         $usuario = $this->usuarioModel->getById($id);
         if (!$usuario) {
             header('Location: ' . BASE_URL . 'usuarios');
